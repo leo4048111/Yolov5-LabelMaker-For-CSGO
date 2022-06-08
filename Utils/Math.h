@@ -19,6 +19,12 @@ namespace Math
 		float x, y, z, w;
 	}Vec4;
 
+    typedef struct _Vec5
+    {
+        int l;
+        float x, y, w, h;
+    }Vec5;
+
     struct Vector {
         Vector() = default;
         constexpr Vector(float x, float y, float z) noexcept : x{ x }, y{ y }, z{ z } {}

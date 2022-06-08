@@ -2,12 +2,12 @@
 #include "pch.h"
 #include "dx9/dx9.h"
 #include "Utils/ScreenCapture.h"
-#include "Utils/LabelMaker.h"
 #include "Utils/Esp.h"
 #include "minhook/include/MinHook.h"
 #pragma comment(lib, "minhook/libMinHook-x86-v141-mtd.lib")
 
 #include "Utils/Interface.h"
+#include "Config.h"
 
 void* pD3D9Device[119];
 
@@ -17,6 +17,13 @@ static dx9::tEndScene oEndScene = nullptr;
 
 static bool isHackUninstall = false;
 
+float boxHeightModifier = 1.2;
+
+int imgCnt = 0;
+
+int timer = SCREENSHOT_DELAY + 1;
+
+
 void MainLoop(LPDIRECT3DDEVICE9 lpD3D9Device)
 {
     if (GetAsyncKeyState(VK_INSERT) & 0x01) {
@@ -24,12 +31,28 @@ void MainLoop(LPDIRECT3DDEVICE9 lpD3D9Device)
     }
 
     if (GetAsyncKeyState(VK_HOME) & 0x01) {
+        timer = 0;
         LOG("Saved a screenshot!");
-        ScreenCapture::CaptureAnImage(dx9::GetProcessWindow());
-        LabelMaker::makeLabel();
+        return;
     }
 
-    Esp::run(lpD3D9Device);
+    if (GetAsyncKeyState(VK_NUMPAD8) & 0x01) {
+        boxHeightModifier += 0.1;
+        LOG(boxHeightModifier);
+    }
+
+    if (GetAsyncKeyState(VK_NUMPAD2) & 0x01) {
+        boxHeightModifier -= 0.1;
+    }
+
+    timer++;
+    if (timer == SCREENSHOT_DELAY) {
+        ScreenCapture::CaptureAnImage(dx9::GetProcessWindow());
+    }
+
+    if (timer >= SCREENSHOT_DELAY) {
+        Esp::run(lpD3D9Device);
+    }
 }
 
 HRESULT APIENTRY hkEndScene(LPDIRECT3DDEVICE9 lpD3D9Device)

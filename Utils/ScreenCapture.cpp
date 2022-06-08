@@ -146,7 +146,6 @@ namespace ScreenCapture
         // Close the handle for the file that was created.
         CloseHandle(hFile);
         LOG("Screenshot has been saved!");
-        imgCnt++;
         // Clean up.
     done:
         DeleteObject(hbmScreen);

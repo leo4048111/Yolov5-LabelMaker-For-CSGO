@@ -110,4 +110,22 @@ namespace dx9
 		DrawLine(br, bl, thickness, color, pDevice);
 		DrawLine(bl, tl, thickness, color, pDevice);
 	}
+
+	void DrawESPBox2(Math::Vec2 midPoint, Math::Vec2 size, int thickness, D3DCOLOR color, LPDIRECT3DDEVICE9 pDevice)
+	{
+		Math::Vec2 tl, tr, bl, br;
+
+		tl.x = midPoint.x - size.x / 2;
+		tr.x = midPoint.x + size.x / 2;
+		tl.y = tr.y = midPoint.y - size.y / 2;
+
+		bl.x = midPoint.x - size.x / 2;
+		br.x = midPoint.x + size.x / 2;
+		bl.y = br.y = midPoint.y + size.y / 2;
+
+		DrawLine(tl, tr, thickness, color, pDevice);
+		DrawLine(tr, br, thickness, color, pDevice);
+		DrawLine(br, bl, thickness, color, pDevice);
+		DrawLine(bl, tl, thickness, color, pDevice);
+	}
 }

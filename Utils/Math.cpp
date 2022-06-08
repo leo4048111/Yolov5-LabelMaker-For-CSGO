@@ -18,7 +18,7 @@ namespace Math
 		NDC.y = clipCoords.y / clipCoords.w;
 		NDC.z = clipCoords.z / clipCoords.w;
 
-		static RECT size;
+		RECT size;
 		GetWindowRect(dx9::GetProcessWindow(), &size);
 		LONG windowWidth = size.right - size.left;
 		LONG windowHeight = size.bottom - size.top;

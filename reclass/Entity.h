@@ -42,6 +42,10 @@ public:
 		return v;
 	}
 
+	uint32_t getTeamID() noexcept {
+		return *reinterpret_cast<uint32_t*>(this + hazedumper::netvars::m_iTeamNum);
+	}
+
 	bool isVisible(Entity* localPlayer, const Math::Vector& position = {0, 0, 0}) noexcept {
 		if (!localPlayer)
 			return false;

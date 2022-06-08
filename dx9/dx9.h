@@ -14,4 +14,6 @@ namespace dx9
 	void DrawLine(Math::Vec2 v1, Math::Vec2 v2, int thickness, D3DCOLOR color, LPDIRECT3DDEVICE9 pDevice);
 
 	void DrawESPBox(Math::Vec2 top, Math::Vec2 bottom, int thickness, D3DCOLOR color, LPDIRECT3DDEVICE9 pDevice);
+
+	void DrawESPBox2(Math::Vec2 midPoint, Math::Vec2 size, int thickness, D3DCOLOR color, LPDIRECT3DDEVICE9 pDevice);
 }

@@ -6,34 +6,30 @@
 #include "reclass/Entity.h"
 #include "reclass/EntityList.h"
 
+#include <string>
+
+extern float boxHeightModifier;
+
 namespace LabelMaker
 {
-    int makeLabel() {
-        static uintptr_t engineBase = (uintptr_t)GetModuleHandle("engine.dll");
-        static uintptr_t clientBase = (uintptr_t)GetModuleHandle("client.dll");
-        uintptr_t clientState = mem::read<uintptr_t>((LPVOID)(engineBase + hazedumper::signatures::dwClientState));
-        uint32_t localPlayerID = mem::read<uint32_t>((LPVOID)(clientState + hazedumper::signatures::dwClientState_GetLocalPlayer));
-        LOG(localPlayerID);
-        uint32_t mask = (1 << localPlayerID);
-        Entity* localPlayer = mem::read<Entity*>((LPVOID)(clientBase + hazedumper::signatures::dwLocalPlayer));
-        EntityList* entList = (EntityList*)(clientBase + hazedumper::signatures::dwEntityList);
-        if (localPlayer == NULL) goto done;
-
-        for (uint32_t i = 0; i < 64; i++)
+    void makeLabel(std::vector<Math::Vec5> labels) {
+        char buffer[256];
+        sprintf_s(buffer, "%s%s%d%s", LABEL_SAVE_DIR, SCREENSHOT_FILENAME_PREFIX, imgCnt, ".txt");
+        LOG(buffer);
+        FILE* fp;
+        fopen_s(&fp, buffer, "w");
+        if (fp == nullptr)
         {
-            Entity* player = entList->getEntity(i);
-            if (player == NULL) continue;
-
-            uint32_t bSpottedByMask = player->getBSpottedByMask();
-            if (!(bSpottedByMask & mask)) continue;
-
-            LOG(player->getHealth());
+            LOG("Unable to open file");
+            return;
+        }
+        for (auto label : labels)
+        {
+            char buf[256];
+            sprintf_s(buf, "%d %.5f %.5f %.5f %.5f\n", label.l, label.x, label.y, label.w, label.h);
+            fputs(buf, fp);
         }
 
-
-
-
-    done:
-        return 0;
+        fclose(fp);
     }
 }
