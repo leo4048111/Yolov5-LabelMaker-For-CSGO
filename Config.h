@@ -1,7 +1,7 @@
 #pragma once
-#define SCREENSHOT_SAVE_DIR "D:/Projects/CPP/Yolov5LabelMakerForCSGO/Data/images/Eval"     //where to save screenshots
-#define LABEL_SAVE_DIR "D:/Projects/CPP/Yolov5LabelMakerForCSGO/Data/labels/Eval"          //where to save labels 
-#define SCREENSHOT_FILENAME_PREFIX "Eval_"                                                 //Filename prefix
+#define SCREENSHOT_SAVE_DIR "D:/Projects/CPP/Yolov5LabelMakerForCSGO/Data/images/train/"     //where to save screenshots
+#define LABEL_SAVE_DIR "D:/Projects/CPP/Yolov5LabelMakerForCSGO/Data/labels/train/"          //where to save labels 
+#define SCREENSHOT_FILENAME_PREFIX "Train_"                                                 //Filename prefix
 #define SCREENSHOT_FILE_TYPE ".png"                                                        //Image file format
 #define SCREENSHOT_DELAY 5                                                                 //Increase this value if your screenshot has bounding box
 
