@@ -36,9 +36,6 @@
     <ClInclude Include="minhook\include\MinHook.h">
       <Filter>minhook</Filter>
     </ClInclude>
-    <ClInclude Include="csgo.hpp">
-      <Filter>hazedumper</Filter>
-    </ClInclude>
     <ClInclude Include="reclass\Entity.h">
       <Filter>reclass</Filter>
     </ClInclude>
@@ -83,6 +80,9 @@
     </ClInclude>
     <ClInclude Include="Utils\Interface.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="hazedumper\csgo.hpp">
+      <Filter>hazedumper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

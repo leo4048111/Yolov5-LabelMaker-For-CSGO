@@ -15,12 +15,12 @@ namespace Esp
 {
     void run(LPDIRECT3DDEVICE9 pDevice)
     {
-        static uintptr_t engineBase = (uintptr_t)GetModuleHandle("engine.dll");
-        static uintptr_t clientBase = (uintptr_t)GetModuleHandle("client.dll");
+        static uintptr_t engineBase = (uintptr_t)GetModuleHandle("engine.dll"); 
+        static uintptr_t clientBase = (uintptr_t)GetModuleHandle("client.dll"); 
         uintptr_t clientState = mem::read<uintptr_t>((LPVOID)(engineBase + hazedumper::signatures::dwClientState));
         uint32_t localPlayerID = mem::read<uint32_t>((LPVOID)(clientState + hazedumper::signatures::dwClientState_GetLocalPlayer));
         Entity* localPlayer = mem::read<Entity*>((LPVOID)(clientBase + hazedumper::signatures::dwLocalPlayer));
-        EntityList* entList = (EntityList*)(clientBase + hazedumper::signatures::dwEntityList);
+        EntityList* entList = (EntityList*)(clientBase + hazedumper::signatures::dwEntityList);  
         float viewMatrix[16];
         std::vector<Math::Vec5> labels;
 
@@ -32,17 +32,19 @@ namespace Esp
         {
             if (i == localPlayerID) continue;
             Entity* player = entList->getEntity(i);
-            if (player == NULL) continue;
+            if (player == NULL) continue;     
 
-            if (player->getHealth() < 1) continue;
+            if (player->getBDormant()) continue;    //check if bDormant
 
-            if (!player->isVisible(localPlayer, {NULL, NULL, NULL})) continue;
+            if (player->getHealth() < 1) continue;  //check if dead
 
-            Math::Vec3 headPos3D = player->getBonePos(8);
-            Math::Vec3 feetPos3D = player->getVecOrigin();
+            if (!player->isVisible(localPlayer, {NULL, NULL, NULL})) continue;     //check if visible
+
+            Math::Vec3 headPos3D = player->getBonePos(8);      //Get head pos
+            Math::Vec3 feetPos3D = player->getVecOrigin();     //Get feet pos
 
             Math::Vec2 headPos2D, feetPos2D;
-            if (!(Math::WorldToScreen(viewMatrix, headPos3D, headPos2D) && Math::WorldToScreen(viewMatrix, feetPos3D, feetPos2D)))
+            if (!(Math::WorldToScreen(viewMatrix, headPos3D, headPos2D) && Math::WorldToScreen(viewMatrix, feetPos3D, feetPos2D)))   //World pos to screen pos
             {
                 continue;
             }
@@ -60,7 +62,7 @@ namespace Esp
             dx9::DrawESPBox2(headPos2D, headSize, 1, D3DCOLOR_RGBA(255, 255, 0, 255), pDevice);
 
 
-            if (timer == SCREENSHOT_DELAY) {
+            if (timer == SCREENSHOT_DELAY) {    //when timer == SCREENSHOT_DELAY, the screenshot is taken, so we should make label for that frame here. 
                 RECT size;
                 GetWindowRect(dx9::GetProcessWindow(), &size);
                 LONG windowWidth = size.right - size.left;
@@ -84,7 +86,7 @@ namespace Esp
         }
 
         if (timer == SCREENSHOT_DELAY) {
-            LabelMaker::makeLabel(labels);
+            LabelMaker::makeLabel(labels);  //Simply write to .txt
             imgCnt++;
         }
 
