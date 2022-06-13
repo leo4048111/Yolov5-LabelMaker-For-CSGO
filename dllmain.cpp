@@ -30,7 +30,7 @@ void MainLoop(LPDIRECT3DDEVICE9 lpD3D9Device)
         isHackUninstall = true;
     }
 
-    if (GetAsyncKeyState(VK_HOME) & 0x01) {
+    if ((GetAsyncKeyState(VK_HOME) & 0x01) || (GetAsyncKeyState(MOUSE_WHEELED) & 0x8000)) {
         timer = 0;
         LOG("Saved a screenshot!");
         return;
