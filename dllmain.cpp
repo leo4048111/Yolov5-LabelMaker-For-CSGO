@@ -38,7 +38,6 @@ void MainLoop(LPDIRECT3DDEVICE9 lpD3D9Device)
 
     if (GetAsyncKeyState(VK_NUMPAD8) & 0x01) {
         boxHeightModifier += 0.1;
-        LOG(boxHeightModifier);
     }
 
     if (GetAsyncKeyState(VK_NUMPAD2) & 0x01) {
