@@ -17,9 +17,9 @@ namespace Esp
     {
         static uintptr_t engineBase = (uintptr_t)GetModuleHandle("engine.dll"); 
         static uintptr_t clientBase = (uintptr_t)GetModuleHandle("client.dll"); 
+        Entity* localPlayer = mem::read<Entity*>((LPVOID)(clientBase + hazedumper::signatures::dwLocalPlayer));
         uintptr_t clientState = mem::read<uintptr_t>((LPVOID)(engineBase + hazedumper::signatures::dwClientState));
         uint32_t localPlayerID = mem::read<uint32_t>((LPVOID)(clientState + hazedumper::signatures::dwClientState_GetLocalPlayer));
-        Entity* localPlayer = mem::read<Entity*>((LPVOID)(clientBase + hazedumper::signatures::dwLocalPlayer));
         EntityList* entList = (EntityList*)(clientBase + hazedumper::signatures::dwEntityList);  
         float viewMatrix[16];
         std::vector<Math::Vec5> labels;
