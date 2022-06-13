@@ -19,12 +19,9 @@ namespace Math
 		NDC.z = clipCoords.z / clipCoords.w;
 
 		RECT size;
-		GetWindowRect(dx9::GetProcessWindow(), &size);
+		GetClientRect(dx9::GetProcessWindow(), &size);
 		LONG windowWidth = size.right - size.left;
 		LONG windowHeight = size.bottom - size.top;
-
-		windowHeight -= 29;
-		windowWidth -= 5;
 
 		screenCoord.x = (windowWidth / 2 * NDC.x) + (NDC.x + windowWidth / 2);
 		screenCoord.y = -(windowHeight / 2 * NDC.y) + (NDC.y + windowHeight / 2);

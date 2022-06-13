@@ -64,12 +64,9 @@ namespace Esp
 
             if (timer == SCREENSHOT_DELAY) {    //when timer == SCREENSHOT_DELAY, the screenshot is taken, so we should make label for that frame here. 
                 RECT size;
-                GetWindowRect(dx9::GetProcessWindow(), &size);
+                GetClientRect(dx9::GetProcessWindow(), &size);
                 LONG windowWidth = size.right - size.left;
                 LONG windowHeight = size.bottom - size.top;
-
-                windowHeight -= 29;
-                windowWidth -= 5;
 
                 uint32_t teamID = player->getTeamID();
                 if (teamID == 2)     //2 for terrorist
