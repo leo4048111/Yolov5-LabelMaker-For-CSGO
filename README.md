@@ -24,7 +24,7 @@ This is a toy dll which allows you to make CSGO dataset for YOLOv5 network with 
 
 + **Open .sln with Visual studio 2019+**
 + **Open `Config.h` and change directory configs**
-+ **Build the project source into .dll **
++ **Build the project source into .dll**
 + **Launch your csgo game** *(notice: This dll doesn't have any sort of VAC bypass so u might wanna start the game in `-insecure` mode to avoid VAC/Untrusted ban)*
 + **Start a match(Prefarably a bot match)**
 
