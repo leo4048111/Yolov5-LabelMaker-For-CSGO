@@ -8,15 +8,15 @@ This is a toy dll which allows you to make CSGO dataset for YOLOv5 network with 
 
 ### Pictures
 
-![image-20220609113325392](https://github.com/leo4048111/Yolov5LabelMakerForCSGO/blob/main/Pictures/image-20220609113325392.png)
+![image-20220609113325392](https://raw.githubusercontent.com/leo4048111/Yolov5LabelMakerForCSGO/main/Pictures/image-20220609113325392.png)
 
 ​										           *This is what your game will look after injecting this dll(Non-visible entities will not have bbox*
 
-![image-20220609113513957](https://github.com/leo4048111/Yolov5LabelMakerForCSGO/blob/main/Pictures/image-20220609113513956.png)
+![image-20220609113513957](https://raw.githubusercontent.com/leo4048111/Yolov5LabelMakerForCSGO/main/Pictures/image-20220609113513956.png)
 
 ​                                                  *This is what your screenshot will look like(It won't have bounding box)*
 
-![image-20220609113623803](https://github.com/leo4048111/Yolov5LabelMakerForCSGO/blob/main/Pictures/image-20220609113623803.png)
+![image-20220609113623803](https://raw.githubusercontent.com/leo4048111/Yolov5LabelMakerForCSGO/main/Pictures/image-20220609113623803.png)
 
 ​												*This is what the corresponding label file will look like(YOLOv5 format,  Change id for each class in source code LabelMaker.h)*
 
