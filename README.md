@@ -28,7 +28,7 @@ This is a toy dll which allows you to make CSGO dataset for YOLOv5 network with 
 + **Launch your csgo game** *(notice: This dll doesn't have any sort of VAC bypass so u might wanna start the game in `-insecure` mode to avoid VAC/Untrusted ban)*
 + **Start a match(Prefarably a bot match)**
 
-+ **Inject this .dll with your favorite injector**
++ **Inject this .dll with your favorite injector(Or checkout https://github.com/leo4048111/Potato-Injector)**
 
 + | Keybinds  |                                                              |
   | --------- | ------------------------------------------------------------ |
@@ -45,6 +45,7 @@ This is a toy dll which allows you to make CSGO dataset for YOLOv5 network with 
 
 + You need to rebuild this dll after changing configs, so a GUI menu might be added for runtime configuration later.
 + If the dll doesn't work after csgo updates, you need to manually update the offsets in  `csgo.hpp` from https://github.com/frk1/hazedumper
+
 
 ### Credits
 
